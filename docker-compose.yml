@@ -10,6 +10,7 @@ services:
     environment:
       PHP_EXTENSION_XDEBUG: 1
       XDEBUG_CONFIG: remote_host=host.docker.internal
+      
     ports:
       - 9001:80
     volumes:
