@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  symfony-websocket:
+    container_name: symfony-websocket
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env.local
+    environment:
+      PHP_EXTENSION_XDEBUG: 1
+      XDEBUG_CONFIG: remote_host=host.docker.internal
+    ports:
+      - 9001:80
+    volumes:
+      - .:/var/www/html
+      - .:/var/cache
+      - .:/vendor
