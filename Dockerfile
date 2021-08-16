@@ -10,13 +10,10 @@ RUN apt-get update \
        git \
        wget \
        libargon2-dev \
-    && docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
-    && docker-php-ext-install mbstring \
-    && pecl install xdebug-3.0.3
+    && pecl install xdebug-3.0.3 \
     && docker-php-ext-install zip \
-    && docker-php-ext-enable xdebug \
-    && docker-php-ext-install pdo pdo_pgsql
+    && docker-php-ext-enable xdebug
 
 COPY docker/vhosts/000-default.conf /etc/apache2/sites-available/000-default.conf
 # Install Composer
@@ -27,6 +24,8 @@ RUN a2enmod rewrite
 RUN docker-php-ext-enable xdebug
 RUN echo "xdebug.mode=debug" >> /usr/local/etc/php/php.ini
 RUN echo "max_execution_time=1800" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+EXPOSE 3001
 
 COPY . /var/www/html/
 

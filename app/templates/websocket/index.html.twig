@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello WebsocketController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <div id="chat">
+
+    </div>
+    <div>
+        <div class="form-group">
+            <label for="name">Name:</label> <input type="text" id="name">
+        </div>
+        <div class="form-group">
+            <label for="message">Message:</label> <input type="text" id="message">
+        </div>
+        <button type="button" id="sendBtn">Send</button>
+    </div>
+</div>
+    <script type="application/javascript">
+        const socket = new WebSocket("ws://localhost:55000");
+
+        socket.addEventListener("open", function() {
+            console.log("CONNECTED");
+        });
+
+        function addMessage(name, message) {
+            const messageHTML = "<div class='message'><strong>" + name + ":</strong> " + message + "</div>";
+            document.getElementById("chat").innerHTML += messageHTML
+        }
+
+        socket.addEventListener("message", function(e) {
+            console.log(e.data);
+            try
+            {
+                const message = JSON.parse(e.data);
+                addMessage(message.name, message.message);
+            }
+            catch(e)
+            {
+                // Catch any errors
+            }
+        });
+
+
+        document.getElementById("sendBtn").addEventListener("click", function() {
+
+            const message = {
+                name: document.getElementById("name").value,
+                message: document.getElementById("message").value
+            };
+            socket.send(JSON.stringify(message));
+            addMessage(message.name, message.message);
+        });
+    </script>
+{% endblock %}

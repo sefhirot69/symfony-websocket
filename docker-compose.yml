@@ -14,6 +14,7 @@ services:
       
     ports:
       - 9001:80
+      - 3001:80
     volumes:
       - ./app/:/var/www/html
       - ./app/:/var/cache
