@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-use JetBrains\PhpStorm\Pure;
+namespace App\Websocket;
+
+use Exception;
 use Ratchet\ConnectionInterface;
 use Ratchet\RFC6455\Messaging\MessageInterface;
 use Ratchet\WebSocket\MessageComponentInterface;
@@ -16,7 +18,7 @@ final class MessageHandler implements MessageComponentInterface
      * MessageHandler constructor.
      *
      */
-    #[Pure] public function __construct()
+    public function __construct()
     {
 
         $this->connections = new SplObjectStorage();
