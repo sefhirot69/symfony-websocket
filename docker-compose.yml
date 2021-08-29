@@ -13,8 +13,8 @@ services:
       XDEBUG_CONFIG: remote_host=host.docker.internal
       
     ports:
-      - 9001:80
-      - 3001:80
+      - "9001:80"
+      - "3001:80"
     volumes:
       - ./app/:/var/www/html
       - ./app/:/var/cache

@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use MessageHandler;
+use App\Websocket\MessageHandler;
 use Ratchet\Http\HttpServer;
 use Ratchet\Server\IoServer;
 use Ratchet\WebSocket\WsServer;

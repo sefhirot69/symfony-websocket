@@ -8,6 +8,7 @@ use Exception;
 use Ratchet\ConnectionInterface;
 use Ratchet\RFC6455\Messaging\MessageInterface;
 use Ratchet\WebSocket\MessageComponentInterface;
+use SplObjectStorage;
 
 final class MessageHandler implements MessageComponentInterface
 {
