@@ -20,7 +20,7 @@ composer composer-install composer-update composer-require: create_env_file
 			--ignore-platform-reqs \
 			--no-ansi
 # 🐳 Docker Compose
-up:
+start:
 	@echo "🚀 Deploy!!!"
 	@docker-compose up -d
 stop:
